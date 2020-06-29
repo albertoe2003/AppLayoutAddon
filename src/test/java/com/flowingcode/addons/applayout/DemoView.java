@@ -32,7 +32,6 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
@@ -49,12 +48,11 @@ import com.vaadin.flow.router.Route;
 
 @SuppressWarnings("serial")
 @Route("")
-@HtmlImport("frontend://styles/shared-styles.html")
 @CssImport("./styles/shared-styles.css")
 public class DemoView extends VerticalLayout {
 
 	private VerticalLayout container = new VerticalLayout();
-	private final AppLayout app = new AppLayout(createLogoImage(), createAvatarComponent(), "AppLayout Vaadin 14 Demo");
+	private final AppLayout app = new AppLayout(createLogoImage(), createAvatarComponent(), "AppLayout Vaadin 16 Demo");
 	private final ToolbarIconButton miSettings = new ToolbarIconButton("Settings", "settings", this::openSettings);
 
 	private final DemoSettings settings = new DemoSettings();
@@ -63,12 +61,12 @@ public class DemoView extends VerticalLayout {
 		container.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 		container.setSizeFull();
 
-		this.setPadding(false);
-		this.setSpacing(false);
-		this.setMargin(false);
+		setPadding(false);
+		setSpacing(false);
+		setMargin(false);
 
 		app.setMenuItems(createMenuItems());
-		
+
 		app.setToolbarIconButtons(miSettings);
 		this.add(app, container);
 
@@ -120,7 +118,7 @@ public class DemoView extends VerticalLayout {
 		binder.forField(cbFixed).bind(DemoSettings::isFixed, DemoSettings::setFixed);
 		binder.forField(cbReveals).bind(DemoSettings::isReveals, DemoSettings::setReveals);
 		binder.forField(cbCompact).bind(DemoSettings::isCompact, DemoSettings::setCompact);
-		binder.setBean(this.settings);
+		binder.setBean(settings);
 
 		VerticalLayout content = new VerticalLayout(
 				cbMenuVisible,
@@ -163,7 +161,7 @@ public class DemoView extends VerticalLayout {
 		container.add(img,h4);
 		return container;
 	}
-	
+
 	private void toggleSettings(MenuItem toggleSettings) {
 		settings.setEnabled(!settings.isEnabled());
 		miSettings.setEnabled(settings.isEnabled());
@@ -172,7 +170,7 @@ public class DemoView extends VerticalLayout {
 			toggleSettings.setLabel("Disable settings");
 		} else {
 			toggleSettings.setLabel("Enable settings");
-		}		
+		}
 	}
 
 	private Component[] createMenuItems() {
@@ -183,27 +181,27 @@ public class DemoView extends VerticalLayout {
 		miToggleSettings.setCommand(() -> toggleSettings(miToggleSettings));
 		toggleSettings(miToggleSettings);
 
-		this.getElement().getStyle().set("--icon-spacing", "normal");
-		
+		getElement().getStyle().set("--icon-spacing", "normal");
+
 		return new Component[] {
-				
+
 				//left, middle and right commands
 				new MenuItem("Click", VaadinIcon.POINTER)
 					.setCommand(MouseButton.LEFT, ()->Notification.show("LEFT click"))
 					.setCommand(MouseButton.MIDDLE, ()->Notification.show("MIDDLE click"))
 					.setCommand(MouseButton.RIGHT, ()->Notification.show("RIGHT click")),
-				
+
 				new MenuItem("No icon"),
-				
+
 				new MenuItem("No icon, spaced").configure(mi->mi.setIconSpacing(true)),
-				
+
 				//menu item with custom content
 				new MenuItem("Toggle").configure(mi->mi.add(new PaperToggle())),
-					
+
 				new MenuItem("Toggle", VaadinIcon.BACKSPACE).configure(mi->mi.add(new PaperToggle())),
-				
+
 				new MenuItem("Toggle", "fc-menuitem-icons:empty").configure(mi->mi.add(new PaperToggle())),
-				
+
 				//icon as VaadinIcon enum
 				new MenuItem("Content", VaadinIcon.BOOK, () -> showHamletContent())
 					.setCommand(MouseButton.MIDDLE, ()->{
@@ -231,7 +229,7 @@ public class DemoView extends VerticalLayout {
 							.add(new MenuItem("Hello Again",()->showContent("Hello Again!")))
 							.add(new MenuItem("And Again",()->showContent("And Again!")))
 						),
-					
+
 				new MenuSeparator("Separator"),
 
 				new MenuItem("Item 1"),
@@ -240,9 +238,9 @@ public class DemoView extends VerticalLayout {
 				new MenuItem("Item 4"),
 				new MenuItem("Item 5"),
 				new MenuItem("Item 6"),
-				
+
 				new MenuSeparator(),
-				
+
 				new MenuItem("Item 7"),
 				new MenuItem("Item 8"),
 				new MenuItem("Item 9"),

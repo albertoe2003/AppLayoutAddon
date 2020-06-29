@@ -23,7 +23,6 @@ package com.flowingcode.addons.applayout;
 
 import com.vaadin.flow.component.HasEnabled;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.icon.IconFactory;
@@ -34,7 +33,6 @@ import com.vaadin.flow.server.Command;
  *
  */
 @SuppressWarnings("serial")
-@HtmlImport("bower_components/paper-icon-button/paper-icon-button.html")
 @NpmPackage(value = "@polymer/paper-icon-button", version = "3.0.2")
 @JsModule("@polymer/paper-icon-button/paper-icon-button.js")
 @Tag("paper-icon-button")
@@ -46,7 +44,7 @@ public class ToolbarIconButton extends SlottedMenuItem implements
 
 	/** Create a new instance of {@code ToolbarIconButton} with a title */
 	public ToolbarIconButton(String title) {
-		this.setTitle(title);
+		setTitle(title);
 	}
 
 	/** Create a new instance of {@code ToolbarIconButton} with a left-button command. */
@@ -57,7 +55,7 @@ public class ToolbarIconButton extends SlottedMenuItem implements
 
 	/** Create a new instance of {@code MenuItem} with a title and a left-button command. */
 	public ToolbarIconButton(String title, Command command) {
-		this.setTitle(title);
+		setTitle(title);
 		this.setCommand(command);
 	}
 

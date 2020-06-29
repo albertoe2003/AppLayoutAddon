@@ -29,7 +29,6 @@ import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.Text;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.dom.Element;
@@ -42,7 +41,6 @@ import com.vaadin.flow.server.Command;
  *
  */
 @SuppressWarnings("serial")
-@HtmlImport("bower_components/paper-item/paper-icon-item.html")
 @NpmPackage(value = "@polymer/paper-item", version = "3.0.1")
 @JsModule("@polymer/paper-item/paper-icon-item.js")
 @Tag("paper-icon-item")
@@ -52,14 +50,14 @@ class PaperIconItem extends Component implements HasComponents, HasText, HasSize
 	private Text text;
 
 	public PaperIconItem(String title) {
-		this.setText("");
-		this.text = new Text(title);
+		setText("");
+		text = new Text(title);
 		add(text);
 	}
 
 	public void addCommand(Command command) {
 		if (command!=null) {
-			this.getElement().addEventListener("click", e->{
+			getElement().addEventListener("click", e->{
 				command.execute();
 				findAppDrawer(this).ifPresent(AppDrawer::close);
 			});
@@ -67,7 +65,7 @@ class PaperIconItem extends Component implements HasComponents, HasText, HasSize
 	}
 
 	public void setTitle(String title) {
-		this.text.setText(title);
+		text.setText(title);
 	}
 
 	public void setIcon(String icon) {
@@ -86,16 +84,16 @@ class PaperIconItem extends Component implements HasComponents, HasText, HasSize
 
 	private Optional<Element> withIronIcon(boolean create) {
 		if (create) {
-			if (this.ironIcon==null) {
-				this.ironIcon = new com.vaadin.flow.component.icon.IronIcon("", "");
+			if (ironIcon==null) {
+				ironIcon = new com.vaadin.flow.component.icon.IronIcon("", "");
 				ironIcon.getElement().setAttribute("slot", "item-icon");
 				add(ironIcon);
 			}
 			return Optional.of(ironIcon.getElement());
 		} else {
-			if (this.ironIcon!=null) {
+			if (ironIcon!=null) {
 				remove(ironIcon);
-				this.ironIcon = null;
+				ironIcon = null;
 			}
 			return Optional.empty();
 		}

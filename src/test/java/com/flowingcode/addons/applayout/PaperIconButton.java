@@ -24,7 +24,6 @@ package com.flowingcode.addons.applayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasEnabled;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.server.Command;
@@ -36,23 +35,22 @@ import com.vaadin.flow.server.Command;
  *
  */
 @SuppressWarnings("serial")
-@HtmlImport("bower_components/paper-icon-button/paper-icon-button.html")
 @NpmPackage(value = "@polymer/paper-icon-button", version = "3.0.2")
 @JsModule("@polymer/paper-icon-button/paper-icon-button.js")
 @Tag("paper-icon-button")
 public class PaperIconButton extends Component implements HasEnabled {
 
     public PaperIconButton(String icon) {
-    	this.setIcon(icon);
+    	setIcon(icon);
     }
 
     public PaperIconButton(String icon, Command command) {
-    	this.setIcon(icon);
-		this.getElement().addEventListener("click", e->command.execute());
+    	setIcon(icon);
+		getElement().addEventListener("click", e->command.execute());
     }
 
     public void setIcon(String icon) {
-    	this.getElement().setAttribute("icon", icon);
+    	getElement().setAttribute("icon", icon);
 
     }
 

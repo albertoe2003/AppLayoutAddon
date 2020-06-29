@@ -10,3 +10,5 @@
 /webpack.config.js
 /package.json
 /error-screenshots
+/pnpmfile.js
+/pnpm-lock.yaml

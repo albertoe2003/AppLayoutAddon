@@ -24,7 +24,6 @@ package com.flowingcode.addons.applayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Image;
@@ -36,7 +35,6 @@ import com.vaadin.flow.component.html.Image;
  *
  */
 @SuppressWarnings("serial")
-@HtmlImport("bower_components/app-layout/app-header/app-header.html")
 @NpmPackage(value = "@polymer/app-layout", version= AppLayout.NPM_VERSION)
 @JsModule("@polymer/app-layout/app-header/app-header.js")
 @Tag("app-header")
@@ -50,7 +48,7 @@ public class AppHeader extends Component implements HasComponents {
 
     public AppHeader(Image logo, String title, AppDrawer drawer) {
     	setReveals(true);
-    	this.getElement().setAttribute("effects", true);
+    	getElement().setAttribute("effects", true);
     	appToolbar = new AppToolbar(logo, title, drawer);
     	this.add(appToolbar);
     }
@@ -66,12 +64,12 @@ public class AppHeader extends Component implements HasComponents {
 
 	/**Mantains the header fixed at the top so it never moves away.*/
 	public void setFixed(boolean fixed) {
-		this.getElement().setAttribute("fixed", fixed);
+		getElement().setAttribute("fixed", fixed);
 	}
 
 	/**Slides back the header when scrolling back up.*/
 	public void setReveals(boolean reveals) {
-		this.getElement().setAttribute("reveals", reveals);
+		getElement().setAttribute("reveals", reveals);
 	}
 
   void setHeight(String height) {
