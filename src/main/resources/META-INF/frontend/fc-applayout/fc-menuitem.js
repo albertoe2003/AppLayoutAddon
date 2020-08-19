@@ -20,6 +20,7 @@
 
 
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import {} from '@polymer/polymer/lib/elements/dom-if.js';
 
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 import "@polymer/paper-item/paper-icon-item.js";
@@ -49,6 +50,10 @@ class MenuItem extends ThemableMixin(PolymerElement) {
 			:host #label {
 				flex-grow: 1
 			}
+			:host a#label {
+				color: inherit;
+				text-decoration: none
+			}
 		</style>
 	         	
 	    <iron-iconset-svg name="fc-menuitem-icons" size="24">
@@ -60,7 +65,16 @@ class MenuItem extends ThemableMixin(PolymerElement) {
 		<iron-collapse-button no-icons="true">
 			<paper-icon-item id="item" slot="collapse-trigger" role="option" disabled="[[disabled]]">
 				<iron-icon src="[[src]]" icon="[[icon]]" slot="item-icon"></iron-icon>
-				<span id="label">[[label]]</span>
+				<dom-if if="[[href]]" restamp>
+					<template>
+						<a router-link href="{{href}}" id="label">[[label]]</a>
+					</template>
+				</dom-if>
+				<dom-if if="{{!href}}" restamp>
+					<template>
+						<span id="label">[[label]]</span>
+					</template>
+				</dom-if>
 				<slot></slot>
 			</paper-icon-item>
 			<div slot="collapse-content" class="sub-menu">
@@ -73,6 +87,11 @@ class MenuItem extends ThemableMixin(PolymerElement) {
 		return {
 			key: String,
 			label : String,
+			href: {
+				type: String,
+				notify: true,
+				value: null,
+			},
 			src : {
 				type: String,
 				reflectToAttribute: true
