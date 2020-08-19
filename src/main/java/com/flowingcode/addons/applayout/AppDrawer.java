@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,7 +35,7 @@ import com.vaadin.flow.shared.Registration;
 
 /**
  * Component that renders the app drawer
- * 
+ *
  * @author mlopez
  *
  */
@@ -50,12 +50,13 @@ public class AppDrawer extends Component implements HasComponents {
 	private final Component header;
 
     public AppDrawer(String title) {
-    	this(new H4(title));
+		this(new H4(title));
     	header.getElement().setAttribute("style", "text-align:center");
     }
 
     public AppDrawer(Component headerComponent) {
     	header = headerComponent;
+		getElement().setAttribute("fc-menuitem-container", "");
     	getElement().setAttribute("id", "drawer");
     	setSwipeOpen(true);
 

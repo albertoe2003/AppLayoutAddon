@@ -67,7 +67,7 @@ class MenuItem extends ThemableMixin(PolymerElement) {
 				<iron-icon src="[[src]]" icon="[[icon]]" slot="item-icon"></iron-icon>
 				<dom-if if="[[href]]" restamp>
 					<template>
-						<a router-link href="{{href}}" id="label">[[label]]</a>
+						<a router-link href="{{href}}" id="label" onclick="getRootNode().host.__closeDrawer()">[[label]]</a>
 					</template>
 				</dom-if>
 				<dom-if if="{{!href}}" restamp>
@@ -144,6 +144,11 @@ class MenuItem extends ThemableMixin(PolymerElement) {
 		return !!(this.src || this.icon);
 	}
 
+	__closeDrawer() {
+		let container = this.closest('[fc-menuitem-container]'); 
+		if (container) container.close();
+	}
+	
 	connectedCallback () {
 		super.connectedCallback ();
 		var slot = this.shadowRoot.querySelector("slot[name='menu-item']");
