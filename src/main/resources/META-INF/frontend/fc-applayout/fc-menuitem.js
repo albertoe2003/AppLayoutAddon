@@ -122,6 +122,9 @@ class MenuItem extends ThemableMixin(PolymerElement) {
 		};
 		this.addEventListener('focus', listener);
 		this.addEventListener('click', listener);
+		this.addEventListener('click', (event) => {
+			if (this.href && event.path[0].id!="label") this.querySelector("a#label").click();
+		});
 		this.addEventListener('mousedown', (event) => {
 			if (event.button==1) {
 				event.preventDefault();
